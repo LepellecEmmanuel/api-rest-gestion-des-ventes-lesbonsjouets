@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,7 +25,18 @@ public class Vente {
     @Column(name="description")
     private String description;
 
+    @Column(name="total_vente", nullable = false)
+    private Double totalVente;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "jour_de_vente_id")
     JourDeVente jourDeVente;
+
+    @Column(name = "created")
+    private LocalDateTime created;
+
+    @Column(name = "updated")
+    private LocalDateTime updated;
+
+
 }
