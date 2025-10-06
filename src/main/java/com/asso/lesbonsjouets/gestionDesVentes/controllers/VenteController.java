@@ -43,4 +43,22 @@ public class VenteController {
         Vente createdVente = venteService.createVente(jourDeVenteId, venteMapper.fromDto(venteDto));
         return venteMapper.toDto(createdVente);
     }
+
+    @PutMapping(path = "/{vente_id}")
+    public VenteDto updateVente(
+            @PathVariable("jour_de_vente_id") UUID jourVenteId,
+            @PathVariable("vente_id") UUID venteId,
+            @RequestBody VenteDto venteDto
+    ) {
+        Vente updatedVente = venteService.updateVente(jourVenteId, venteId, venteMapper.fromDto(venteDto));
+        return venteMapper.toDto(updatedVente);
+    }
+
+    @DeleteMapping(path = "/{vente_id}")
+    public void deleteVente(
+            @PathVariable("jour_de_vente_id") UUID jourVenteId,
+            @PathVariable("vente_id") UUID venteId
+    ) {
+        venteService.deleteVente(jourVenteId, venteId);
+    }
 }
