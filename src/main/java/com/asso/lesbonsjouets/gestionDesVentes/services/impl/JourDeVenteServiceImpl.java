@@ -6,6 +6,7 @@ import com.asso.lesbonsjouets.gestionDesVentes.repositories.JourDeVenteRepositor
 import com.asso.lesbonsjouets.gestionDesVentes.services.JourDeVenteService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,12 +28,28 @@ public class JourDeVenteServiceImpl implements JourDeVenteService {
 
     @Override
     public Optional<JourDeVente> getJourDeVente(UUID jourDeVenteId) {
-        return Optional.empty();
+        return jourDeVenteRepository.findById(jourDeVenteId);
     }
 
     @Override
     public JourDeVente createJourDeVente(JourDeVente jourDeVente) {
-        return null;
+        if(null !=  jourDeVente.getId())
+        {
+            throw new IllegalArgumentException("Jour de vente already has an Id!");
+        }
+        if(null ==  jourDeVente.getJour()) {
+            throw new IllegalArgumentException("Jour de vente must have a jour!");
+        }
+        LocalDateTime now = LocalDateTime.now();
+        JourDeVente jourDeVenteToSave = new JourDeVente(
+                null,
+                jourDeVente.getJour(),
+                jourDeVente.getDescription(),
+                null,
+                now,
+                now
+        );
+        return jourDeVenteRepository.save(jourDeVenteToSave);
     }
 
     @Override
