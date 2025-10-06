@@ -30,7 +30,7 @@ public class JourDeVenteController {
     }
 
     @GetMapping(path = "/{jour_de_vente_id}")
-    public Optional<JourDeVenteDto> getJourDeVente(@PathVariable UUID jourDeVenteId) {
+    public Optional<JourDeVenteDto> getJourDeVente(@PathVariable("jour_de_vente_id") UUID jourDeVenteId) {
         return jourDeVenteService.getJourDeVente(jourDeVenteId).map(jourDeVenteMapper::toDto);
     }
 
@@ -38,5 +38,14 @@ public class JourDeVenteController {
     public JourDeVenteDto createJourDeVente(@RequestBody JourDeVenteDto jourDeVenteDto) {
         JourDeVente createdJourDeVente = jourDeVenteService.createJourDeVente(jourDeVenteMapper.fromDto(jourDeVenteDto));
         return jourDeVenteMapper.toDto(createdJourDeVente);
+    }
+
+    @PutMapping(path = "/{jour_de_vente_id}")
+    public JourDeVenteDto updateJourDeVente(
+            @PathVariable("jour_de_vente_id") UUID jourDeVenteId,
+            @RequestBody JourDeVenteDto jourDeVenteDto
+    ) {
+        JourDeVente updatedJourDeVente = jourDeVenteService.updateJourDeVente(jourDeVenteId, jourDeVenteMapper.fromDto(jourDeVenteDto));
+        return jourDeVenteMapper.toDto(updatedJourDeVente);
     }
 }
