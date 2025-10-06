@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping(path = "/api/jours_de_vente/{jour_de_vente_id}/ventes")
 public class VenteController {
     private final VenteService venteService;
