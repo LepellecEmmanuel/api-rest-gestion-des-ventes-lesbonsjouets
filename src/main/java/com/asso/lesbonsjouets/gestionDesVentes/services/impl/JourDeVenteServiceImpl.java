@@ -61,7 +61,7 @@ public class JourDeVenteServiceImpl implements JourDeVenteService {
             throw new IllegalArgumentException("Jour de vente must have an id!");
         }
         if(!Objects.equals(jourDeVente.getId(), jourDeVenteId)) {
-            throw new IllegalArgumentException("Jour de vente Ids doesn't match!");
+            throw new IllegalArgumentException("Jour de vente Ids do not match!");
         }
         if(null ==  jourDeVente.getJour()) {
             throw new IllegalArgumentException("Jour de vente must have a jour!");
