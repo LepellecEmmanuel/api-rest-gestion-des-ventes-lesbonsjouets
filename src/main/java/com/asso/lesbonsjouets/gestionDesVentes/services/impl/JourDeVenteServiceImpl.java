@@ -78,6 +78,6 @@ public class JourDeVenteServiceImpl implements JourDeVenteService {
 
     @Override
     public void deleteJourDeVente(UUID jourDeVenteId) {
-
+        jourDeVenteRepository.deleteById(jourDeVenteId);
     }
 }

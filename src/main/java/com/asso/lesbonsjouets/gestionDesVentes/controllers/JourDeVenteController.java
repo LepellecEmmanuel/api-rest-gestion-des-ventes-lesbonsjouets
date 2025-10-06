@@ -48,4 +48,9 @@ public class JourDeVenteController {
         JourDeVente updatedJourDeVente = jourDeVenteService.updateJourDeVente(jourDeVenteId, jourDeVenteMapper.fromDto(jourDeVenteDto));
         return jourDeVenteMapper.toDto(updatedJourDeVente);
     }
+
+    @DeleteMapping(path = "/{jour_de_vente_id}")
+    public void deleteJourDeVente(@PathVariable("jour_de_vente_id") UUID jourDeVenteId) {
+        jourDeVenteService.deleteJourDeVente(jourDeVenteId);
+    }
 }
